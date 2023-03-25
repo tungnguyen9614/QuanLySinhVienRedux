@@ -12,8 +12,6 @@ export class FormDangKy extends Component {
       email: "",
       soDienThoai: "",
     };
-
-    this.resetForm = React.createRef();
   }
 
   handleOnchange = (event) => {
@@ -28,7 +26,12 @@ export class FormDangKy extends Component {
     e.preventDefault();
     this.props.onSubmit(this.state);
 
-    this.resetForm.current.reset();
+    this.setState({
+      maSV: "",
+      hoTen: "",
+      email: "",
+      soDienThoai: "",
+    });
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -45,7 +48,7 @@ export class FormDangKy extends Component {
       });
     }
   }
- 
+
   render() {
     return (
       <div className="container">
@@ -54,7 +57,7 @@ export class FormDangKy extends Component {
             <h3>Thông tin sinh viên</h3>
           </div>
           <div className="card-body">
-            <form onSubmit={this.handleSubmit} ref={this.resetForm}>
+            <form onSubmit={this.handleSubmit}>
               <div className="row">
                 <div className="form-group col-6">
                   <span>Mã SV</span>
@@ -99,7 +102,7 @@ export class FormDangKy extends Component {
 
               <div className="row">
                 <div className="col-md-12 text-left">
-                  <button  type="submit" className="btn btn-success">
+                  <button type="submit" className="btn btn-success">
                     Submit
                   </button>
                 </div>
